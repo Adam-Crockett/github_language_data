@@ -1,6 +1,10 @@
 import { gql } from 'apollo-boost';
 import 'apollo-client';
 
+/**
+ * Builds the graphql main query and fragments. While apollo and graphql have a built in parameter system for fragments,
+ * the schema of requested information for this project did not format well with the standard fragment builder.
+ */
 class QueryBuilder {
   languageName: string;
   monthDates: string[];
@@ -24,6 +28,9 @@ class QueryBuilder {
     ];
   }
 
+  /**
+   * Creates the main query for graphql.
+   */
   gqlBuilder() {
     let mainQuery: string = `{`;
     for (let i: number = 0; i < this.fragNames.length; i += 1) {
@@ -41,6 +48,9 @@ class QueryBuilder {
     `;
   }
 
+  /**
+   * Builds the fragments to add to main query.
+   */
   fragBuilder = (fragName: string, language: string, month: string) => {
     return `${fragName}: search(query:"language:${language}, created:${month}", type:REPOSITORY){repositoryCount}`;
   };

@@ -1,3 +1,7 @@
+
+/**
+ * Class for holding language data from GitHub, a long with the dates and months for the data.
+ */
 class LanguageData {
   name: string;
   monthList: string[];
